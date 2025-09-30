@@ -1,0 +1,153 @@
+/* COLORS */
+:root {
+ --initial-gradient: #4900A8;
+ --final-gradient: #4900A8;
+  --card-radius: 16px;
+  --card-padding: 24px;
+  --card-max-width: 750px;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.main-container {
+  width: 96%;
+  max-width: var(--card-max-width);
+  margin: 24px auto;
+}
+
+/* Encabezado */
+.header-container {
+  background: linear-gradient(135deg, var(--initial-gradient) 60%, var(--final-gradient) 100%);
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+  box-shadow: var(--card-shadow);
+  color: var(--fondo-claro);
+  transition: box-shadow 0.3s;
+}
+
+
+.header-container{
+    color: #ffffff;
+}
+
+.header-title{
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    padding: 2rem 0 0 0;
+}
+
+.image-container {
+    display: flex;            /* Para que imagen y texto queden lado a lado */
+    align-items: flex-end;    /* Alinea la imagen y el texto al fondo del contenedor */             /* Espacio entre imagen y texto */
+    height: auto;            /* Altura del contenedor */
+    position: relative;       /* Contenedor relativo si quieres usar absolute en algún hijo */
+}
+
+.header-image {
+    margin-left: clamp(-15px, -1vw, -50px);
+    margin-bottom: 0;
+}
+
+
+.image-container img {
+    width: 56%;               /* Ajusta tamaño de la imagen */
+    height: auto;
+    max-height: 250px;
+
+}
+
+.image-container p {
+    margin: 0;
+    padding: 1rem 0;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: clamp(14px, 2.6vw, 22px); /* mínimo 12px, máximo 18px, se ajusta al 2% del ancho de la pantalla */
+}
+
+.text-imagepw{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: -2rem;
+}
+
+.image-password{
+    height: auto;
+    margin-bottom: 20px;
+    width: 100px;
+}
+
+/* CONTENEDOR DE PREGUNTAS */
+
+/* Cuerpo */
+.body-container {
+  background: var(--fondo-claro);
+  box-shadow: var(--card-shadow);
+  padding: 16px var(--card-padding);
+  border-radius: 0 0 var(--card-radius) var(--card-radius);
+  border-top: 1px solid var(--borde-header);
+  color: var(--texto-claro);
+}
+
+.body-container img{
+    display: block;
+    width: 60%;
+    height: auto;
+    margin: 0 auto 2rem auto;
+
+}
+
+.body-container h2 {
+    font-size: clamp(14px, 2.6vw, 22px); /* mínimo 12px, máximo 18px, se ajusta al 2% del ancho de la pantalla */
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.button-form {
+  display: flex;
+  justify-content: space-between; /* espacio uniforme entre botones */
+  gap: 20px;                       /* opcional, para separarlos */
+  width: 100%;
+}
+
+.img-button {
+    flex: 1;                          /* cada botón ocupa 1/3 del ancho total */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-button img,
+.img-button svg {
+  width: 80%;       /* ocupa todo el ancho del botón */
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+.img-button img,
+.img-button svg {
+  width: 100%;       /* ocupa todo el ancho del botón */
+  height: auto;
+  display: block;
+}
+}
+
+.icon {
+  color: #17bc66; /* verde */
+  transition: filter 0.3s;
+}
+
+.icon:hover {
+  filter: brightness(0.5); /* más claro */
+}
+
