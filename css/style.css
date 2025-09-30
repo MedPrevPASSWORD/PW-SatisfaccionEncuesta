@@ -98,7 +98,7 @@ body {
     display: block;
     width: 60%;
     height: auto;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 0 auto;
 
 }
 
@@ -113,6 +113,27 @@ body {
   justify-content: space-between; /* espacio uniforme entre botones */
   gap: 20px;                       /* opcional, para separarlos */
   width: 100%;
+}
+
+.radio-form {
+  display: flex;                   /* opcional, para separarlos */
+  width: 100%;
+  flex-wrap: wrap;                 /* permite que las opciones se envuelvan a la siguiente línea si es necesario */
+}
+
+.radio-option {
+  display: flex;
+  margin-bottom: 10px; /* Espacio entre las opciones (opcional) */
+  width: 40%;
+}
+
+.radio-option input[type="radio"] {
+  margin-right: 8px; /* Espacio entre el input y el label */
+}
+
+.radio-option label {
+  font-size: 16px; /* Tamaño de la fuente, si necesitas ajustarlo */
+  cursor: pointer; /* Hace que el cursor cambie cuando pasas sobre el label */
 }
 
 .img-button {
@@ -150,4 +171,58 @@ body {
 .icon:hover {
   filter: brightness(0.5); /* más claro */
 }
+
+.icon-opc2{
+  color: #ffcc00; /* amarillo */
+  transition: filter 0.3s;
+}
+
+.icon-opc2:hover {
+  filter: brightness(0.5); /* más claro */
+}
+
+.icon-opc3{
+  color: #ff3b30; /* rojo */
+  transition: filter 0.3s;
+}
+.icon-opc3:hover {
+  filter: brightness(0.5); /* más claro */
+}
+
+
+  article {
+    max-width: 600px; /* límite de ancho para que no se expanda demasiado */
+    margin: auto;
+    padding: 1rem;
+  }
+
+  textarea {
+    width: 100%;           /* ocupa todo el ancho disponible */
+    min-height: 100px;     /* altura mínima */
+    padding: 0.75rem;      /* espacio interno */
+    resize: vertical;      /* solo permite redimensionar verticalmente */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+#btnFinalizar {
+    background-color: #4900A8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 40%;
+    display: block;
+    margin: 0 auto; /* centra horizontalmente */
+    transition: background 0.3s ease;
+    max-width: 200px;
+  }
+
+  #btnFinalizar:hover {
+    background-color: #37007D; /* un poco más oscuro al pasar el mouse */
+  }
 
