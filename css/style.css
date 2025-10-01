@@ -136,17 +136,40 @@ body {
   cursor: pointer; /* Hace que el cursor cambie cuando pasas sobre el label */
 }
 
-.img-button {
-    flex: 1;                          /* cada botón ocupa 1/3 del ancho total */
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Mejora visual para opción seleccionada (radio + imagen o icono) */
+input[type="radio"]:checked + img,
+input[type="radio"]:checked + svg {
+  border: 3px solid #4900A8;      /* morado oscuro destacado */
+  border-radius: 12px;
+  box-shadow: 0 0 10px #4900A855; /* resplandor morado */
+  opacity: 1;
+  transform: scale(1.08);
+  transition: all 0.2s;
 }
 
+/* Si el icono es SVG, además cambia el color */
+input[type="radio"]:checked + svg {
+  color: #4900A8;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.img-button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column; /* apila verticalmente */
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* espacio entre SVG y texto */
+}
 .img-button img,
 .img-button svg {
   width: 80%;       /* ocupa todo el ancho del botón */
@@ -158,9 +181,13 @@ body {
 .img-button img,
 .img-button svg {
   width: 100%;       /* ocupa todo el ancho del botón */
-  height: auto;
   display: block;
 }
+}
+
+.img-button span {
+  font-size: 16px;
+  text-align: center;
 }
 
 .icon {
@@ -226,3 +253,4 @@ body {
     background-color: #37007D; /* un poco más oscuro al pasar el mouse */
   }
 
+  
