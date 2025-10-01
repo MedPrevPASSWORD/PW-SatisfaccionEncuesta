@@ -17,7 +17,7 @@
         <div class="header-container">
             <h1 class="header-title">Encuesta de satisfacción</h1>
             <div class="image-container">
-                <img src="images/Titulares-min.webp" alt="header image from pw members" class="header-image">
+                <img src="images/3areas.webp" alt="header image from pw members" class="header-image">
                 <div class="text-imagepw">
                     <p>
                         <span class="line">Ayúdanos</span><br>
@@ -145,11 +145,11 @@
                     <h2 class="question-title">¿Tu atención se dio a tiempo?</h2>
                     <div class="radio-form">
                         <div class="radio-option">
-                            <input type="radio" name="respuesta" value="si" class="none" id="respuesta_si" required>
+                            <input type="radio" name="p3-puntualidad" value="1" class="none" id="respuesta_si" required>
                             <label for="respuesta_si">Sí</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" name="respuesta" value="no" class="none" id="respuesta_no">
+                            <input type="radio" name="p3-puntualidad" value="0" class="none" id="respuesta_no">
                             <label for="respuesta_no">No</label>
                         </div>
                     </div>
@@ -159,11 +159,11 @@
                     <h2 class="question-title">¿Nos recomendarías con tus compañeros?</h2>
                     <div class="radio-form">
                         <div class="radio-option">
-                            <input type="radio" name="respuesta" value="si" class="none" id="recomendacion-si" required>
+                            <input type="radio" name="p4-recomendacion" value="1" class="none" id="recomendacion-si" required>
                             <label for="recomendacion-si">Sí</label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" name="recomendacion" value="no" class="none" id="recomendacion-no">
+                            <input type="radio" name="p4-recomendacion" value="0" class="none" id="recomendacion-no">
                             <label for="recomendacion-no">No</label>
                         </div>
                     </div>
@@ -171,10 +171,18 @@
 
                 <article>
                     <h2 class="question-title">¿Algún comentario o sugerencia?</h2>
-                    <textarea name="comentario" id="comentario" cols="30" rows="3"
+                    <textarea name="p5-comentarios" id="comentario" cols="30" rows="3"
                         placeholder="Escribe tu comentario aquí..."></textarea>
                 </article>
                 
+                <section class="successAlert" id="success-alert">
+                  <img src="images/IngOmar.png" alt="Gracias">
+                  <div>
+                    <strong>¡Gracias!</strong>
+                    <p>Tus respuestas nos ayudan a mejorar.</p>
+                  </div>
+                </section>
+
                 <section class="btn-container">
                 <button type="submit" id="btnFinalizar">Finalizar</button>
                 </section>  
