@@ -49,16 +49,75 @@ form.addEventListener("submit", async (e) => {
 
 
 
+const spanSatisfecho = document.getElementById("satisfecho-icon");
+const spanNormal = document.getElementById("normal-icon");
+const spanInsatisfecho = document.getElementById("insatisfecho-icon");
+
+const spansAreas = [
+  document.getElementById("Nutricion"),
+  document.getElementById("medicina"),
+  document.getElementById("fisica"),
+  document.getElementById("satisfecho"),
+  document.getElementById("normal"),
+  document.getElementById("insatisfecho"),
+
+  // IMAGENES
+
+  
+];
+
 function showSuccessAlert() {
   const alertBox = document.getElementById('success-alert');
+  const modal = document.getElementById('successModal');
   const button = document.getElementById('btnFinalizar');
   button.style.display = 'none';
   alertBox.style.display = 'flex';
-  
+  modal.style.display = 'flex';
+
+  spansAreas.forEach(span => {
+    span.style.display = 'none';
+  });
+
 
   setTimeout(() => {
 
     button.style.display = 'flex';
     alertBox.style.display = 'none';
+    modal.style.display = 'none';
+
+
   }, 5000);
 }
+
+
+function toggleDisplay(showId, hideIds) {
+  document.getElementById(showId).style.display = 'flex';
+  document.getElementById(showId).style.fontSize = '20px';
+  hideIds.forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+}
+
+document.getElementById("satisfecho-icon").addEventListener("click", function() {
+  toggleDisplay("satisfecho", ["normal", "insatisfecho"]);
+});
+
+document.getElementById("normal-icon").addEventListener("click", function() {
+  toggleDisplay("normal", ["satisfecho", "insatisfecho"]);
+});
+
+document.getElementById("insatisfecho-icon").addEventListener("click", function() {
+  toggleDisplay("insatisfecho", ["satisfecho", "normal"]);
+});
+
+document.getElementById("nutricion-icon").addEventListener("click", function() {
+  toggleDisplay("Nutricion", ["medicina", "fisica"]);
+});
+
+document.getElementById("medicina-icon").addEventListener("click", function() {
+  toggleDisplay("medicina", ["Nutricion", "fisica"]);
+});
+
+document.getElementById("fisica-icon").addEventListener("click", function() {
+  toggleDisplay("fisica", ["Nutricion", "medicina"]);
+});

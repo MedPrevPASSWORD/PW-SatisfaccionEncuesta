@@ -86,12 +86,9 @@ body {
 
 /* Cuerpo */
 .body-container {
-  background: var(--fondo-claro);
   box-shadow: var(--card-shadow);
   padding: 16px var(--card-padding);
   border-radius: 0 0 var(--card-radius) var(--card-radius);
-  border-top: 1px solid var(--borde-header);
-  color: var(--texto-claro);
 }
 
 .body-container img{
@@ -103,7 +100,7 @@ body {
 }
 
 .body-container h2 {
-    font-size: clamp(14px, 2.6vw, 22px); /* mínimo 12px, máximo 18px, se ajusta al 2% del ancho de la pantalla */
+    font-size: clamp(1rem, 2.6vw, 1.6rem); /* mínimo 16px, máximo 32px, se ajusta al 2% del ancho de la pantalla */
     font-weight: 400;
     margin-bottom: 16px;
 }
@@ -195,6 +192,7 @@ input[type="radio"]:checked + svg {
   text-align: center;
 }
 
+
 .icon {
   color: #17bc66; /* verde */
   transition: filter 0.3s;
@@ -259,39 +257,52 @@ input[type="radio"]:checked + svg {
 #btnFinalizar:hover {
   background-color: #37007D;
 }
-
-.successAlert {
+/* Fondo oscuro de pantalla completa */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* Oscurece el fondo */
   display: flex;
-  align-items: center;
+   align-items: flex-start; /* alinea arriba */
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px); /* Opcional: efecto de desenfoque */
+}
+/* Alerta centrada estilo modal */
+.successAlert {
   background: linear-gradient(90deg, #e6ddfa 70%, #d1c3f6 100%);
   color: #4900A8;
   border: none;
-  box-shadow: 0 2px 8px rgba(73, 0, 168, 0.08);
-  padding: 18px 24px;
-  border-radius: 12px;
-  text-align: left; 
-  margin: 24px auto 0 auto;
+  box-shadow: 0 4px 20px rgba(73, 0, 168, 0.2);
+  padding: 30px 24px;
+  border-radius: 16px;
+  width: 80%;
+  max-width: 500px;
   font-size: 1.08rem;
   font-weight: 500;
-  width: 90%;
-  max-width: 500px;
-  letter-spacing: 0.5px;
-  transition: box-shadow 0.3s, background 0.3s;
-  position: relative;
-  
+  top: 40%;
+transform: translateY(-50%);
+position: absolute;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.4s ease;
 }
 
+/* Imagen del personaje */
 .successAlert img {
   position: absolute;
-  bottom: 0;                   /* inicia pegada abajo */
-  left: 0;                     /* puedes moverla a la izquierda o centrar */
-  height: clamp(120px, 10vh, 300px); /* responsive: min 150px, ideal 10% viewport height, max 300px */
-  width: auto;                 /* mantiene proporción */
-  
+  bottom: 0;
+  left: 0;
+  height: clamp(150px, 10vh, 300px);
+  width: auto;
 }
 
+/* Texto */
 .successAlert div {
-  margin-left: clamp(100px, 25vw, 220px); /* deja espacio a la derecha de la imagen, también responsive */
+  margin-left: clamp(100px, 25vw, 120px);
   display: flex;
   flex-direction: column;
 }
@@ -307,4 +318,14 @@ input[type="radio"]:checked + svg {
 }
 
 
-
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  
+  }
+  to {
+    opacity: 1;
+    
+  }
+}
