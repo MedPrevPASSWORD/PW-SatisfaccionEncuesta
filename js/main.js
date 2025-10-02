@@ -60,5 +60,5 @@ function showSuccessAlert() {
 
     button.style.display = 'flex';
     alertBox.style.display = 'none';
-  }, 3000);
+  }, 5000);
 }

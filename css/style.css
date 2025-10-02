@@ -183,6 +183,11 @@ input[type="radio"]:checked + svg {
   width: 100%;       /* ocupa todo el ancho del botón */
   display: block;
 }
+
+.img-button span {
+  font-size: 16px;
+  text-align: center;
+}
 }
 
 .img-button span {
@@ -235,23 +240,25 @@ input[type="radio"]:checked + svg {
   }
 
 #btnFinalizar {
-    background-color: #4900A8;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    width: 40%;
-    display: block;
-    margin: 0 auto; /* centra horizontalmente */
-    transition: background 0.3s ease;
-    max-width: 200px;
-  }
+  background-color: #4900A8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; 
+  transition: background 0.3s ease;
+}
 
-  #btnFinalizar:hover {
-    background-color: #37007D; /* un poco más oscuro al pasar el mouse */
-  }
+#btnFinalizar:hover {
+  background-color: #37007D;
+}
 
 .successAlert {
   display: flex;
@@ -271,25 +278,33 @@ input[type="radio"]:checked + svg {
   letter-spacing: 0.5px;
   transition: box-shadow 0.3s, background 0.3s;
   position: relative;
+  
 }
 
 .successAlert img {
-  width: 60%;
-  height: auto;
-  margin-right: 16px; 
+  position: absolute;
+  bottom: 0;                   /* inicia pegada abajo */
+  left: 0;                     /* puedes moverla a la izquierda o centrar */
+  height: clamp(120px, 10vh, 300px); /* responsive: min 150px, ideal 10% viewport height, max 300px */
+  width: auto;                 /* mantiene proporción */
+  
 }
 
 .successAlert div {
+  margin-left: clamp(100px, 25vw, 220px); /* deja espacio a la derecha de la imagen, también responsive */
   display: flex;
   flex-direction: column;
 }
 
 .successAlert strong {
-  font-size: 1.2rem; 
-  margin-bottom: 4px; 
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 4px;
 }
 
 .successAlert p {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
   margin: 0;
 }
+
+
+
