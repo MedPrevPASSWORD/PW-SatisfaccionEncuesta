@@ -1,319 +1,348 @@
     /* Variables y estilos base para botones: profesional y vibrante */
-    :root{
-        --btn-text: #ffffff;
-        --radius: 10px;
-        --transition: 200ms cubic-bezier(.2,.9,.2,1);
-        --shadow: 0 8px 20px rgba(12,18,28,0.12);
-        --shadow-hover: 0 14px 34px rgba(12,18,28,0.18);
+    :root {
+      --btn-text: #ffffff;
+      --radius: 10px;
+      --transition: 200ms cubic-bezier(.2, .9, .2, 1);
+      --shadow: 0 8px 20px rgba(12, 18, 28, 0.12);
+      --shadow-hover: 0 14px 34px rgba(12, 18, 28, 0.18);
 
-        --nutri-start: #3bb04a;
-        --nutri-end:  #2e8f3a;
+      --nutri-start: #3bb04a;
+      --nutri-end: #2e8f3a;
 
-        --fisica-start:#ff9b4a;
-        --fisica-end:  #f36b1a;
+      --fisica-start: #ff9b4a;
+      --fisica-end: #f36b1a;
 
-        --medica-start:#20c6c0;
-        --medica-end:  #128d88;
+      --medica-start: #20c6c0;
+      --medica-end: #128d88;
 
-        --todas-start: #ce49c3;
-        --todas-end:   #740e66d2;
+      --todas-start: #ce49c3;
+      --todas-end: #740e66d2;
 
-        /* Tonos pastel suaves */
-        --nutri-pastel:  #c8f3cc;  /* verde claro */
-        --fisica-pastel: #ffe0c2;  /* naranja suave */
-        --medica-pastel: #c8f8f6;  /* turquesa claro */
-        --todas-pastel:  #f3c8ef;  /* morado/rosa pastel */
+      /* Tonos pastel suaves */
+      --nutri-pastel: #2e8f3917;
+      /* verde claro */
+      --fisica-pastel: #f36a1a0e;
+      /* naranja suave */
+      --medica-pastel: #20c6c011;
+      /* turquesa claro */
+      --todas-pastel: #f3c8ef79;
+      /* morado/rosa pastel */
 
     }
 
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f7fa;
-        margin: 0;
-        padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
     }
 
     main {
-        padding: 20px 0;
-        text-align: center;
+      padding: 20px 0;
+      text-align: center;
     }
 
     /* Contenedor centrado y responsive */
-    .home-button-container{
-        width: min(780px, 92%);
-        margin: 18px auto;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 16px;
-        align-items: center;
+    .home-button-container {
+      width: min(780px, 92%);
+      margin: 18px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
     }
 
     /* Estilo base para todos los botones dentro del contenedor */
     .home-button-container button,
     .home-button {
-        appearance: none;
-        -webkit-appearance: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 10px 18px;
-        border: none;
-        border-radius: var(--radius);
-        color: var(--btn-text);
-        font-weight: 600;
-        font-size: 1.2rem;
-        line-height: 1;
-        cursor: pointer;
-        box-shadow: var(--shadow);
-        transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
-        user-select: none;
-        white-space: nowrap;
+      appearance: none;
+      -webkit-appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: var(--radius);
+      color: var(--btn-text);
+      font-weight: 600;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      user-select: none;
+      white-space: nowrap;
     }
 
     /* Interacciones: hover / focus / active */
     .home-button:hover,
-    .home-button:focus{
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-hover);
-        filter: saturate(1.05);
-        outline: none;
+    .home-button:focus {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      filter: saturate(1.05);
+      outline: none;
     }
-    .home-button:active{
-        transform: translateY(-1px) scale(0.995);
-        box-shadow: 0 6px 14px rgba(12,18,28,0.10);
+
+    .home-button:active {
+      transform: translateY(-1px) scale(0.995);
+      box-shadow: 0 6px 14px rgba(12, 18, 28, 0.10);
     }
-    .home-button:focus-visible{
-        box-shadow: 0 8px 28px rgba(0,120,255,0.14);
-        outline: 3px solid rgba(0,120,255,0.12);
-        border-radius: calc(var(--radius) + 2px);
+
+    .home-button:focus-visible {
+      box-shadow: 0 8px 28px rgba(0, 120, 255, 0.14);
+      outline: 3px solid rgba(0, 120, 255, 0.12);
+      border-radius: calc(var(--radius) + 2px);
     }
 
     /* Estado deshabilitado */
-    .home-button:disabled{
-        cursor: not-allowed;
-        opacity: 0.6;
-        transform: none;
-        box-shadow: none;
-        filter: grayscale(0.15) brightness(0.95);
+    .home-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+      transform: none;
+      box-shadow: none;
+      filter: grayscale(0.15) brightness(0.95);
     }
 
     /* Variantes de color con degradado sutil para mayor vibrancia */
-    .btn-nutri{
-        background-image: linear-gradient(180deg, var(--nutri-start), var(--nutri-end));
-        box-shadow: 0 10px 26px rgba(46,143,58,0.18);
+    .btn-nutri {
+      background-image: linear-gradient(180deg, var(--nutri-start), var(--nutri-end));
+      box-shadow: 0 10px 26px rgba(46, 143, 58, 0.18);
     }
-    .btn-fisica{
-        background-image: linear-gradient(180deg, var(--fisica-start), var(--fisica-end));
-        box-shadow: 0 10px 26px rgba(243,107,26,0.18);
+
+    .btn-fisica {
+      background-image: linear-gradient(180deg, var(--fisica-start), var(--fisica-end));
+      box-shadow: 0 10px 26px rgba(243, 107, 26, 0.18);
     }
-    .btn-medica{
-        background-image: linear-gradient(180deg, var(--medica-start), var(--medica-end));
-        box-shadow: 0 10px 26px rgba(18,141,136,0.18);
+
+    .btn-medica {
+      background-image: linear-gradient(180deg, var(--medica-start), var(--medica-end));
+      box-shadow: 0 10px 26px rgba(18, 141, 136, 0.18);
     }
-    .btn-todas{
-        background-image: linear-gradient(180deg, var(--todas-start), var(--todas-end));
-        box-shadow: 0 10px 26px rgba(198,31,31,0.18);
+
+    .btn-todas {
+      background-image: linear-gradient(180deg, var(--todas-start), var(--todas-end));
+      box-shadow: 0 10px 26px rgba(198, 31, 31, 0.18);
     }
 
     /* Variante primaria por id preservada (puede heredar .home-button) */
-    #btnBuscar{
-        background-image: linear-gradient(180deg, var(--nutri-start), #2f8c3a);
-        box-shadow: 0 10px 26px rgba(46,143,58,0.18);
+    #btnBuscar {
+      background-image: linear-gradient(180deg, var(--nutri-start), #2f8c3a);
+      box-shadow: 0 10px 26px rgba(46, 143, 58, 0.18);
     }
 
     /* Pequeños ajustes para iconos o textos largos */
-    .home-button .icon{
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.05em;
+    .home-button .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05em;
     }
 
     /* Alternativa: outline ligero para botones secundarios (opcional) */
-    .btn-outline{
-        background: transparent;
-        color: #1a1a1a;
-        border: 2px solid rgba(0,0,0,0.08);
-        box-shadow: none;
+    .btn-outline {
+      background: transparent;
+      color: #1a1a1a;
+      border: 2px solid rgba(0, 0, 0, 0.08);
+      box-shadow: none;
     }
 
 
-/* ============================= */
-/* Estilos para la tabla dinámica */
-/* ============================= */
+    /* ============================= */
+    /* Estilos para la tabla dinámica */
+    /* ============================= */
 
-#resultados {
-  width: min(100%, 900px);
-  margin: 1em auto;
-  padding: 0 10px 30px 10px;
-}
+    #resultados {
+      width: min(100%, 1200px);
+      margin: 1em auto;
+      padding: 0 10px 30px 10px;
+    }
 
-/* ============================= */
-/* Tabla minimalista sin bordes */
-/* ============================= */
-/* ==================================== */
-/* ESTILOS BASE (comunes a todas las áreas) */
-/* ==================================== */
-#resultados table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
-}
 
-#resultados thead {
-  transition: background-color 0.3s ease;
-}
+    /* ==================================== */
+    /* ESTILOS BASE (comunes a todas las áreas) */
+    /* ==================================== */
 
-#resultados th {
-  text-align: left;
-  padding: 12px 16px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
-}
+    #resultados table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
 
-#resultados td {
-  padding: 12px 16px;
-  font-size: 0.93rem;
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
+    #resultados thead {
+      transition: background-color 0.3s ease;
+    }
 
-#resultados tr:hover {
-  transition: background-color 0.2s ease;
-}
+    #resultados th {
+      text-align: left;
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      text-align: center;
+    }
 
-#resultados p {
-  margin-bottom: 8px;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
+    #resultados td {
+      padding: 12px 16px;
+      font-size: 0.93rem;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
 
-/* ==================================== */
-/* TEMA POR DEFECTO (cuando no hay filtro o carga inicial) */
-/* ==================================== */
-#resultados table {
-  background-color: #ffffff;
-}
+    #resultados tr:hover {
+      transition: background-color 0.2s ease;
+    }
 
-#resultados thead {
-  background-color: #fafafa;
-}
+    #resultados p {
+      margin-bottom: 8px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
 
-#resultados th {
-  color: #222;
-}
+    /* ==================================== */
+    /* TEMA POR DEFECTO (cuando no hay filtro o carga inicial) */
+    /* ==================================== */
+    #resultados table {
+      background-color: #ffffff;
+    }
 
-#resultados td {
-  color: #444;
-}
+    #resultados thead {
+      background-color: #fafafa;
+    }
 
-#resultados tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
+    #resultados th {
+      color: #222;
+    }
 
-#resultados tr:hover {
-  background-color: #f2f6f9;
-}
+    #resultados td {
+      color: #444;
+    }
 
-/* ==================================== */
-/* TEMAS DE COLOR POR ÁREA */
-/* ==================================== */
+    #resultados tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
 
-/* TODAS (morado pastel) */
-#resultados.todas table {
-  background-color: var(--todas-pastel);
-  border: 2px solid var(--todas-start);
-  box-shadow: 0 4px 14px rgba(206,73,195,0.12);
-}
-#resultados.todas thead {
-  background-color: var(--todas-pastel);
-  border-bottom: 1px solid rgba(116,14,102,0.06);
-}
-#resultados.todas th {
-  color: var(--todas-start);
-}
-#resultados.todas td {
-  color: #3a2a70;
-}
-#resultados.todas tr:nth-child(even) {
-  background-color: var(--todas-pastel);
-}
-#resultados.todas tr:hover {
-  background-color: rgba(243,200,239,0.35);
-}
+    #resultados tr:hover {
+      background-color: #f2f6f9;
+    }
 
-/* NUTRICIÓN (verde pastel) */
-#resultados.nutricion table {
-  background-color: var(--nutri-pastel);
-  border: 2px solid var(--nutri-start);
-  box-shadow: 0 4px 14px rgba(76,175,80,0.12);
-}
-#resultados.nutricion thead {
-  background-color: var(--nutri-pastel);
-  border-bottom: 1px solid rgba(46,143,58,0.06);
-}
-#resultados.nutricion th {
-  color: var(--nutri-start);
-}
-#resultados.nutricion td {
-  color: #1b5e20;
-}
-#resultados.nutricion tr:nth-child(even) {
-  background-color: var(--nutri-pastel);
-}
-#resultados.nutricion tr:hover {
-  background-color: rgba(200,243,204,0.5);
-}
+    /* ==================================== */
+    /* TEMAS DE COLOR POR ÁREA */
+    /* ==================================== */
 
-/* FÍSICA (naranja pastel) */
-#resultados.fisica table {
-  background-color: var(--fisica-pastel);
-  border: 2px solid var(--fisica-start);
-  box-shadow: 0 4px 14px rgba(243,107,26,0.12);
-}
-#resultados.fisica thead {
-  background-color: var(--fisica-pastel);
-  border-bottom: 1px solid rgba(243,107,26,0.06);
-}
-#resultados.fisica th {
-  color: var(--fisica-start);
-}
-#resultados.fisica td {
-  color: #08306b;
-}
-#resultados.fisica tr:nth-child(even) {
-  background-color: var(--fisica-pastel);
-}
-#resultados.fisica tr:hover {
-  background-color: rgba(255,224,194,0.6);
-}
+    /* TODAS (morado pastel) */
+    #resultados.todas table {
+      background-color: var(--todas-pastel);
+      border: 2px solid var(--todas-start);
+      box-shadow: 0 4px 14px rgba(206, 73, 195, 0.12);
+    }
 
-/* MÉDICA (turquesa pastel) */
-#resultados.medicina table {
-  background-color: var(--medica-pastel);
-  border: 2px solid var(--medica-start);
-  box-shadow: 0 4px 14px rgba(18,141,136,0.12);
-}
-#resultados.medicina thead {
-  background-color: var(--medica-pastel);
-  border-bottom: 1px solid rgba(18,141,136,0.06);
-}
-#resultados.medicina th {
-  color: var(--medica-start);
-}
-#resultados.medicina td {
-  color: #0d5a57;
-}
-#resultados.medicina tr:nth-child(even) {
-  background-color: var(--medica-pastel);
-}
-#resultados.medicina tr:hover {
-  background-color: rgba(200,248,246,0.6);
-}
+    #resultados.todas thead {
+      background-color: var(--todas-pastel);
+      border-bottom: 1px solid rgba(116, 14, 102, 0.06);
+    }
+
+    #resultados.todas th {
+      color: var(--todas-start);
+    }
+
+    #resultados.todas td {
+      color: #3a2a70;
+    }
+
+    #resultados.todas tr:nth-child(even) {
+      background-color: var(--todas-pastel);
+    }
+
+    #resultados.todas tr:hover {
+      background-color: rgba(243, 200, 239, 0.35);
+    }
+
+    /* NUTRICIÓN (verde pastel) */
+    #resultados.nutricion table {
+      background-color: var(--nutri-pastel);
+      border: 2px solid var(--nutri-start);
+      box-shadow: 0 4px 14px rgba(76, 175, 80, 0.12);
+    }
+
+    #resultados.nutricion thead {
+      background-color: var(--nutri-pastel);
+      border-bottom: 1px solid rgba(46, 143, 58, 0.06);
+    }
+
+    #resultados.nutricion th {
+      color: var(--nutri-start);
+    }
+
+    #resultados.nutricion td {
+      color: #1b5e20;
+    }
+
+    #resultados.nutricion tr:nth-child(even) {
+      background-color: var(--nutri-pastel);
+    }
+
+    #resultados.nutricion tr:hover {
+      background-color: rgba(200, 243, 204, 0.5);
+    }
+
+    /* FÍSICA (naranja pastel) */
+    #resultados.fisica table {
+      background-color: var(--fisica-pastel);
+      border: 2px solid var(--fisica-start);
+      box-shadow: 0 4px 14px rgba(243, 107, 26, 0.12);
+    }
+
+    #resultados.fisica thead {
+      background-color: var(--fisica-pastel);
+      border-bottom: 1px solid rgba(243, 107, 26, 0.06);
+    }
+
+    #resultados.fisica th {
+      color: var(--fisica-start);
+    }
+
+    #resultados.fisica td {
+      color: #08306b;
+    }
+
+    #resultados.fisica tr:nth-child(even) {
+      background-color: var(--fisica-pastel);
+    }
+
+    #resultados.fisica tr:hover {
+      background-color: rgba(255, 224, 194, 0.6);
+    }
+
+    /* MÉDICA (turquesa pastel) */
+    #resultados.medicina table {
+      background-color: var(--medica-pastel);
+      border: 2px solid var(--medica-start);
+      box-shadow: 0 4px 14px rgba(18, 141, 136, 0.12);
+    }
+
+    #resultados.medicina thead {
+      background-color: var(--medica-pastel);
+      border-bottom: 1px solid rgba(18, 141, 136, 0.06);
+    }
+
+    #resultados.medicina th {
+      color: var(--medica-start);
+    }
+
+    #resultados.medicina td {
+      color: #0d5a57;
+    }
+
+    #resultados.medicina tr:nth-child(even) {
+      background-color: var(--medica-pastel);
+    }
+
+    #resultados.medicina tr:hover {
+      background-color: rgba(200, 248, 246, 0.6);
+    }

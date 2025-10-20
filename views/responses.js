@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
  // Quita clases previas y aplica nueva
     resultadosDiv.className = "";
-    if (!filtros.area) resultadosDiv.classList.add("todas");
-    else resultadosDiv.classList.add(filtros.area.toLowerCase());
+      if (!filtros.area) resultadosDiv.classList.add("todas");
+      else resultadosDiv.classList.add(filtros.area.toLowerCase());
 
       // Construir query string dinámicamente
       const queryString = new URLSearchParams(filtros).toString();
@@ -32,6 +32,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const response = await fetch(url);
       const data = await response.json();
+
+      console.log(data.message);
+      console.log(data.count);
+
+    // Formatear fechas
+      const fechasFormateadas = data.data.map(item => {
+      const fecha = new Date(item.fecha.replace(" ", "T"));
+      const hora = fecha.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+      const dia = fecha.getDate().toString().padStart(2, "0");
+      const mes = fecha.toLocaleString("es-MX", { month: "long" });
+      const año = fecha.getFullYear();
+      return `${dia} de ${mes} del ${año} a las ${hora}`;
+      });
+
+    // Agregar al objeto principal
+      data.fechasFormateadas = fechasFormateadas;
+
+
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || "Error al obtener los datos");
@@ -46,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================================
   // Mostrar resultados en tabla
   // ================================
-function mostrarResultados({ data, message, count }) {
+function mostrarResultados({ data, message, count, fechasFormateadas }) {
   if (count === 0) {
     resultadosDiv.innerHTML = `<p>No se encontraron registros con los filtros aplicados.</p>`;
     return;
@@ -64,15 +82,15 @@ function mostrarResultados({ data, message, count }) {
       </thead>
       <tbody>`;
 
-  data.forEach(row => {
-    html += `
-      <tr>
-        <td>${row.fecha || ""}</td>
-        <td>${row.p1_area_atencion || ""}</td>
-        <td>${row.p2_experiencia || ""}</td>
-        <td>${row.comentarios || ""}</td>
-      </tr>`;
-  });
+data.forEach((row, i) => {
+  html += `
+    <tr>
+      <td>${fechasFormateadas[i] || ""}</td>
+      <td>${row.p1_area_atencion || ""}</td>
+      <td>${row.p2_experiencia || ""}</td>
+      <td>${row.comentarios || ""}</td>
+    </tr>`;
+});
 
   html += "</tbody></table>";
   resultadosDiv.innerHTML = html;
@@ -85,7 +103,8 @@ function mostrarResultados({ data, message, count }) {
 
     $("#respuestas-table").DataTable({
       pageLength: 10,
-      lengthMenu: [5, 10, 25, 50],
+      order: [[0, 'desc']],  // ✅ CORRECTO - array de arrays
+      lengthMenu: [5, 10, 25, 50, 100],
       language: {
         url: "https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-MX.json"
       }
