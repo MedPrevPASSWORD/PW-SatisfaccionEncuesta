@@ -103,7 +103,7 @@ data.forEach((row, i) => {
 
     $("#respuestas-table").DataTable({
       pageLength: 10,
-      order: [[0, 'desc']],  // ✅ CORRECTO - array de arrays
+      order: [], // ❗️Desactiva el ordenamiento por defecto
       lengthMenu: [5, 10, 25, 50, 100],
       language: {
         url: "https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-MX.json"

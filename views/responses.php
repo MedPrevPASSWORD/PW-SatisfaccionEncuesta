@@ -40,9 +40,12 @@ try {
     // Consulta dinámica
     // ================================
     $sql = "SELECT * FROM pw_encuesta_de_satisfaccion";
-    if ($conditions) {
+
+    if (!empty($conditions)) {
         $sql .= " WHERE " . implode(" AND ", $conditions);
     }
+
+    $sql .= " ORDER BY fecha DESC";
 
     $stmt = $conn->prepare($sql);
     if ($params) {

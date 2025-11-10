@@ -346,3 +346,103 @@
     #resultados.medicina tr:hover {
       background-color: rgba(200, 248, 246, 0.6);
     }
+
+
+    /* ============================= */
+        /* =========
+      Media queries para dispositivos móviles/tables
+      (Agregar al final de /css/admin.css; todo lo demás permanece igual)
+      ========= */
+
+    /* Ajustes para tablets y pantallas pequeñas */
+    @media (max-width: 900px) {
+      .home-button-container {
+       width: min(680px, 96%);
+       gap: 12px;
+      }
+
+      .home-button,
+      .home-button-container button {
+       font-size: 1.05rem;
+       padding: 9px 14px;
+      }
+
+      .home-button .icon {
+       font-size: 1em;
+      }
+
+      #resultados {
+       padding: 0 8px 20px;
+      }
+
+      #resultados th,
+      #resultados td {
+       padding: 10px 12px;
+       font-size: 0.92rem;
+      }
+    }
+
+    /* Ajustes específicos para móviles (teléfonos) */
+    @media (max-width: 480px) {
+      main {
+       padding: 12px 0;
+      }
+
+      .home-button-container {
+       width: 94%;
+       margin: 14px auto;
+       flex-direction: column;
+       gap: 10px;
+       align-items: stretch; /* que cada botón ocupe el ancho disponible */
+      }
+
+      .home-button,
+      .home-button-container button {
+       width: 100%;
+       justify-content: center;
+       padding: 10px 12px;
+       font-size: 1rem;
+       box-shadow: 0 6px 18px rgba(12, 18, 28, 0.08);
+      }
+
+      .home-button .icon {
+       font-size: 0.98em;
+      }
+
+      /* Hacer la tabla desplazable horizontalmente en móviles
+        sin cambiar la estructura HTML */
+      #resultados {
+       width: 100%;
+       padding: 0 6px 14px;
+      }
+
+      #resultados table {
+       display: block;
+       overflow-x: auto;
+       -webkit-overflow-scrolling: touch;
+       width: 100%;
+       white-space: nowrap;
+       border-radius: 8px;
+      }
+
+      /* Reducir padding y tamaño de fuente para celdas en móvil */
+      #resultados th,
+      #resultados td {
+       padding: 8px 10px;
+       font-size: 0.88rem;
+      }
+
+      #resultados tr:hover {
+       background-color: rgba(242, 246, 249, 0.9);
+      }
+
+      /* Ajustes visuales para filas y párrafos */
+      #resultados tr:nth-child(even) {
+       background-color: rgba(0,0,0,0.02);
+      }
+
+      #resultados p {
+       margin-bottom: 6px;
+       font-size: 0.95rem;
+      }
+    }
