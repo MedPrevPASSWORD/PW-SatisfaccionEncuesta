@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "./responses.php"; // Ajusta el nombre si es diferente
+  const API_URL = "../php/get_responses.php"; // API que nos trae todas las respuestas de la encuesta
 
   const btnTodas = document.getElementById("todas");
   const btnNutri = document.getElementById("nutri");
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       resultadosDiv.innerHTML = "<p>Cargando datos...</p>";
 
- // Quita clases previas y aplica nueva
-    resultadosDiv.className = "";
+      // Quita clases previas y aplica nueva
+      resultadosDiv.className = "";
       if (!filtros.area) resultadosDiv.classList.add("todas");
       else resultadosDiv.classList.add(filtros.area.toLowerCase());
 
@@ -36,17 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(data.message);
       console.log(data.count);
 
-    // Formatear fechas
+      // Formatear fechas
       const fechasFormateadas = data.data.map(item => {
-      const fecha = new Date(item.fecha.replace(" ", "T"));
-      const hora = fecha.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
-      const dia = fecha.getDate().toString().padStart(2, "0");
-      const mes = fecha.toLocaleString("es-MX", { month: "long" });
-      const año = fecha.getFullYear();
-      return `${dia} de ${mes} del ${año} a las ${hora}`;
+        const fecha = new Date(item.fecha.replace(" ", "T"));
+        const hora = fecha.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+        const dia = fecha.getDate().toString().padStart(2, "0");
+        const mes = fecha.toLocaleString("es-MX", { month: "long" });
+        const año = fecha.getFullYear();
+        return `${dia} de ${mes} del ${año} a las ${hora}`;
       });
 
-    // Agregar al objeto principal
+      // Agregar al objeto principal
       data.fechasFormateadas = fechasFormateadas;
 
 
@@ -64,14 +64,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // ================================
   // Mostrar resultados en tabla
   // ================================
-function mostrarResultados({ data, message, count, fechasFormateadas }) {
-  if (count === 0) {
-    resultadosDiv.innerHTML = `<p>No se encontraron registros con los filtros aplicados.</p>`;
-    return;
-  }
+  function mostrarResultados({ data, message, count, fechasFormateadas }) {
+    if (count === 0) {
+      resultadosDiv.innerHTML = `<p>No se encontraron registros con los filtros aplicados.</p>`;
+      return;
+    }
 
-  let html = `<p><strong>${message}</strong> (${count} resultados)</p>`;
-  html += `<table id="respuestas-table" class="display">
+    let html = `<p><strong>${message}</strong> (${count} resultados)</p>`;
+    html += `<table id="respuestas-table" class="display">
       <thead>
         <tr>
           <th>Fecha contestado</th>
@@ -82,35 +82,35 @@ function mostrarResultados({ data, message, count, fechasFormateadas }) {
       </thead>
       <tbody>`;
 
-data.forEach((row, i) => {
-  html += `
+    data.forEach((row, i) => {
+      html += `
     <tr>
       <td>${fechasFormateadas[i] || ""}</td>
       <td>${row.p1_area_atencion || ""}</td>
       <td>${row.p2_experiencia || ""}</td>
       <td>${row.comentarios || ""}</td>
     </tr>`;
-});
-
-  html += "</tbody></table>";
-  resultadosDiv.innerHTML = html;
-
-  // Inicializar DataTable (esperar a que el DOM se actualice)
-  setTimeout(() => {
-    if ($.fn.dataTable.isDataTable("#respuestas-table")) {
-      $("#respuestas-table").DataTable().destroy();
-    }
-
-    $("#respuestas-table").DataTable({
-      pageLength: 10,
-      order: [], // ❗️Desactiva el ordenamiento por defecto
-      lengthMenu: [5, 10, 25, 50, 100],
-      language: {
-        url: "https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-MX.json"
-      }
     });
-  }, 0);
-}
+
+    html += "</tbody></table>";
+    resultadosDiv.innerHTML = html;
+
+    // Inicializar DataTable (esperar a que el DOM se actualice)
+    setTimeout(() => {
+      if ($.fn.dataTable.isDataTable("#respuestas-table")) {
+        $("#respuestas-table").DataTable().destroy();
+      }
+
+      $("#respuestas-table").DataTable({
+        pageLength: 10,
+        order: [], // ❗️Desactiva el ordenamiento por defecto
+        lengthMenu: [5, 10, 25, 50, 100],
+        language: {
+          url: "https://cdn.datatables.net/plug-ins/2.0.8/i18n/es-MX.json"
+        }
+      });
+    }, 0);
+  }
 
 
   // ================================

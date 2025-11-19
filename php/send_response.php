@@ -1,35 +1,97 @@
 <?php
-
 require 'conn.php';
 
-// Obtener los datos enviados desde el frontend
-$data = json_decode(file_get_contents("php://input"), true);
-
-// Validar que los datos existen
-if (isset($data['area_atencion'], $data['experiencia'], $data['puntualidad'], $data['recomendacion'])) {
-    // Sanear los datos para evitar inyecciones SQL
-    $area_atencion = $conn->real_escape_string($data['area_atencion']);
-    $experiencia = $conn->real_escape_string($data['experiencia']);
-    $puntualidad = $conn->real_escape_string($data['puntualidad']);
-    $recomendacion = $conn->real_escape_string($data['recomendacion']);
-    $comentarios = isset($data['comentarios']) ? $conn->real_escape_string($data['comentarios']) : "";
-
-    // Crear la consulta SQL para insertar los datos en la tabla
-    $sql = "INSERT INTO pw_encuesta_de_satisfaccion (p1_area_atencion, p2_experiencia, p3_puntualidad, p4_recomendacion, comentarios) 
-            VALUES ('$area_atencion', '$experiencia', '$puntualidad', '$recomendacion', '$comentarios')";
-
-    if ($conn->query($sql) === TRUE) {
-        // Si la inserción fue exitosa, enviar una respuesta JSON
-        echo json_encode(["success" => true, "message" => "Encuesta enviada con éxito"]);
-    } else {
-        // Si hubo un error, enviar una respuesta JSON de error
-        echo json_encode(["success" => false, "message" => "Error al insertar los datos: " . $conn->error]);
-    }
-} else {
-    // Si faltan algunos datos requeridos
-    echo json_encode(["success" => false, "message" => "Faltan algunos datos obligatorios."]);
+// Función para enviar respuesta JSON
+function sendResponse($success, $message)
+{
+    header('Content-Type: application/json');
+    echo json_encode(["success" => $success, "message" => $message]);
+    exit;
 }
 
-// Cerrar la conexión a la base de datos
+// Verificar método HTTP
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    sendResponse(false, "Método no permitido");
+}
+
+// Obtener los datos enviados desde el frontend
+$input = file_get_contents("php://input");
+if (empty($input)) {
+    sendResponse(false, "No se recibieron datos");
+}
+
+$data = json_decode($input, true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    sendResponse(false, "Formato de datos inválido");
+}
+
+// Validar campos obligatorios
+$requiredFields = ['area_atencion', 'experiencia', 'puntualidad', 'recomendacion']; // Estos datos se envían de main js en un  body: JSON.stringify(datos)
+foreach ($requiredFields as $field) {
+
+    // 1. Verifica que exista
+    if (!isset($data[$field])) {
+        sendResponse(false, "Faltan datos obligatorios: $field");
+    }
+
+    // 2. Verifica que no sea cadena vacía (pero permite "0")
+    if (trim((string)$data[$field]) === '') {
+        sendResponse(false, "El campo '$field' no puede estar vacío");
+    }
+}
+
+// Validación de valores permitidos
+$validAreas = ['nutricion', 'medicina', 'fisica'];
+$validExperiencias = ['satisfecho', 'normal', 'insatisfecho'];
+$validPuntualidad = ['1', '0'];
+$validRecomendacion = ['1', '0'];
+
+if (!in_array($data['area_atencion'], $validAreas)) {
+    sendResponse(false, "Área de atención inválida");
+}
+if (!in_array($data['experiencia'], $validExperiencias)) {
+    sendResponse(false, "Experiencia inválida");
+}
+if (!in_array($data['puntualidad'], $validPuntualidad)) {
+    sendResponse(false, "Puntualidad inválida");
+}
+if (!in_array($data['recomendacion'], $validRecomendacion)) {
+    sendResponse(false, "Recomendación inválida");
+}
+
+// Sanitizar comentarios
+$comentarios = isset($data['comentarios']) ? substr(trim($data['comentarios']), 0, 500) : "";
+
+// Preparar la consulta segura
+$stmt = $conn->prepare(
+    "INSERT INTO pw_encuesta_de_satisfaccion 
+    (p1_area_atencion, p2_experiencia, p3_puntualidad, p4_recomendacion, comentarios)
+    VALUES (?, ?, ?, ?, ?)"
+);
+
+if (!$stmt) {
+    error_log("Error al preparar consulta: " . $conn->error);
+    sendResponse(false, "Error interno del servidor");
+}
+
+// Vincular parámetros y ejecutar
+$stmt->bind_param(
+    "sssss",
+    $data['area_atencion'],
+    $data['experiencia'],
+    $data['puntualidad'],
+    $data['recomendacion'],
+    $comentarios
+);
+
+if ($stmt->execute()) {
+    sendResponse(true, "Encuesta enviada con éxito");
+} else {
+    // Registrar error internamente, no mostrar detalles al usuario
+    error_log("Error al insertar encuesta: " . $stmt->error);
+    sendResponse(false, "Ocurrió un error al enviar la encuesta");
+}
+
+// Cerrar conexión
+$stmt->close();
 $conn->close();
-?>

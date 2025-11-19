@@ -37,13 +37,15 @@ form.addEventListener("submit", async (e) => {
     const data = await response.json();
     console.log("Respuesta del servidor:", data);
 
-    showSuccessAlert();
-    form.reset();
-
-
+    if (data.success) { 
+      showSuccessAlert();
+      form.reset();
+    } else {
+      showFailedAlert(data.message);
+    }
   } catch (error) {
     console.error("Error al enviar la encuesta:", error);
-    alert("Ocurrió un error al enviar la encuesta.");
+    showFailedAlert("Ocurrió un error al enviar la encuesta.");
   }
 });
 
@@ -65,30 +67,6 @@ const spansAreas = [
 
   
 ];
-
-function showSuccessAlert() {
-  const alertBox = document.getElementById('success-alert');
-  const modal = document.getElementById('successModal');
-  const button = document.getElementById('btnFinalizar');
-  button.style.display = 'none';
-  alertBox.style.display = 'flex';
-  modal.style.display = 'flex';
-
-  spansAreas.forEach(span => {
-    span.style.display = 'none';
-  });
-
-
-  setTimeout(() => {
-
-    button.style.display = 'flex';
-    alertBox.style.display = 'none';
-    modal.style.display = 'none';
-
-
-  }, 5000);
-}
-
 
 function toggleDisplay(showId, hideIds) {
   document.getElementById(showId).style.display = 'flex';
