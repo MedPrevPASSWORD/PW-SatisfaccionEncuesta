@@ -17,6 +17,82 @@ Las respuestas se almacenan en una base de datos y pueden ser consultadas desde 
 - Facilitar estadísticas por área y experiencia
 - Proveer datos para toma de decisiones y mejora continua
 
+## Instalación
+
+### Requisitos Funcionales
+- PHP 7.0+
+- MySQL 5.7+
+- Servidor web (Apache)
+- Computadora con navegador moderno (Chrome, Firefox, Edge)
+
+### Pasos de Instalación local
+
+**Para estos pasos recomendamos usar VS Code**
+
+1. Clonar o descargar el repositorio en el servidor web
+https://github.com/MedPrevPASSWORD/PW-SatisfaccionEncuesta
+![clonar repositorio](images/documentacion/instalacion-1.png)
+
+2. Importar el archivo SQL `SQL/pw_encuesta_de_satisfaccion.sql` en la base de datos MySQL
+![Importar SQL](images/documentacion/instalacion-4.png)
+
+3. Configurar las credenciales de la base de datos en `php/conn.php`
+![configurar credenciales](images/documentacion/instalacion-2.png)
+
+4. Asegurarse de que el servidor web tenga permisos para ejecutar archivos PHP
+
+5. Acceder a `index.html` desde el navegador para ver el formulario de la encuesta
+![acceder al formulario](images/documentacion/instalacion-3.png)
+
+## Configuración para Producción
+
+### Acerca del Servidor
+
+El sistema puede ser desplegado en cualquier servidor web que soporte PHP y MySQL. Para este proyecto, se recomienda utilizar el **servidor SARA** de la Facultad de Medicina.
+
+#### Características del Servidor SARA
+- **Sistema Operativo:** Linux
+- **Servidor Web:** Apache
+- **Lenguajes:** PHP (preinstalado y configurado)
+- **Base de Datos:** MySQL (preinstalado y configurado)
+- **Estado:** Listo para producción
+- **Acceso Remoto:** A través de Bitvise SSH Client
+- **Ubicación Física:** Facultad de Medicina, Medicina Preventiva, modulo password, sala de contacto.
+- **Ip de acceso:** 192.168.1.67
+
+#### Credenciales de Acceso
+
+| Servicio | Usuario | Contraseña |
+|----------|---------|------------|
+| phpMyAdmin (root) | `user001` | `#@ct1tuD#` |
+
+> **📋 Nota:** Para detalles específicos sobre configuración y administración del servidor SARA, consultar la documentación interna del Ing. Carlos Ramírez.
+
+
+### Pasos para Despliegue en Producción
+
+1. Subir todos los archivos al servidor web mediante Bitvise o similar
+
+![Bitvise SSH Client](images/documentacion/despliegue-1.png)
+
+![Bitvise login](images/documentacion/despliegue-2.png)
+
+2. Arrastrar los archivos al directorio raíz del servidor web (normalmente `/var/www/html/`)
+
+![Subir archivos al servidor](images/documentacion/despliegue-3.png)
+
+3. Configurar las credenciales de la base de datos en `php/conn.php` acorde al entorno de producción
+
+![Configurar credenciales](images/documentacion/despliegue-4.png)
+
+4. Importar el archivo SQL `SQL/pw_encuesta_de_satisfaccion.sql` en la base de datos MySQL del servidor de producción (exactamente igual que el paso 2 de instalación local)
+
+5. Probar el formulario en producción y verificar que las respuestas se guarden correctamente
+
+![Pagina en servidor ](images/documentacion/despliegue-5.png)
+
+
+
 ## Flujo General del Sistema
 
 1. El estudiante llega a su consulta en alguna de las áreas
