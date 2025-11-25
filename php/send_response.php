@@ -88,9 +88,10 @@ $stmt->bind_param(
 );
 
 if ($stmt->execute()) {
-    sendResponse(true, "Encuesta enviada con éxito");
-    log_insert("Encuesta insertada: " . json_encode($data));
+     log_insert("Encuesta insertada: " . json_encode($data));
     log_insert("Prueba directa de qeu si jala", ["test" => 123]);
+    sendResponse(true, "Encuesta enviada con éxito");
+   
 } else {
     // Registrar error internamente, no mostrar detalles al usuario
     log_error("Error al insertar encuesta: " . $stmt->error);

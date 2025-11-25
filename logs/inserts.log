@@ -4,3 +4,6 @@
 [2025-11-26 00:10:59] Prueba directa => {"test":123}
 [2025-11-26 00:11:33] Prueba directa => {"test":123}
 [2025-11-26 00:11:48] Prueba directa => {"test":123}
+[2025-11-26 00:18:02] Prueba directa => {"test":123}
+[2025-11-26 00:18:02] Encuesta insertada: {"area_atencion":"nutricion","experiencia":"satisfecho","puntualidad":"1","recomendacion":"1","comentarios":"cacaca"} => 
+[2025-11-26 00:18:02] Prueba directa de qeu si jala => {"test":123}
