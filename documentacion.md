@@ -14,15 +14,16 @@
 - [Lógica Frontend](#lógica-frontend)
 
 ## 🏥 Descripción General
-
-Este sistema forma parte del módulo de atención a estudiantes de la Facultad de Medicina, perteneciente a Medicina Preventiva.
+Este sistema forma parte del Módulo de Atención a Estudiantes PASSWORD de la Facultad de Medicina, dentro del área de Medicina Preventiva.
 
 El proyecto consiste en una encuesta de satisfacción que los estudiantes contestan al finalizar su consulta en alguna de las tres áreas:
 - Área Física
 - Área Médica  
 - Área Nutricional
 
-Las respuestas se almacenan en una base de datos y pueden ser consultadas desde un panel administrativo por los titulares de cada área.
+Al finalizar su consulta, cada estudiante responde una encuesta de satisfacción, la cual mide la calidad del servicio recibido y la percepción general de la atención.
+
+Las respuestas se registran en una base de datos centralizada y pueden ser consultadas posteriormente desde un panel administrativo por los responsables de cada área.
 
 ## 🎯 Objetivo del Proyecto
 
@@ -286,7 +287,7 @@ El sistema puede ser desplegado en cualquier servidor web que soporte PHP y MySQ
 
 **Ejemplo:**
 ```
-get_responses.php?area=fisica&experiencia=normal
+get_responses.php?area=fisica&experiencia=normal // Aún no se implementa el experiencia por el volumen de datos, pero el codigo está listo para ello. Solo es añadir la logica necesaria en el html y js.
 ```
 
 **Salida:**
@@ -322,10 +323,27 @@ Encargado de:
 - Mostrar resultados en una tabla DataTable
 - Filtrar datos por área
 
-
 ### alerts.js
 Encargado de:
 - Diseñar las funciones para mostrar alertas personalizadas
 - Función showSuccessAlert() para mostrar alerta de éxito
 - Función showFailedAlert(message) para mostrar alerta de error con mensaje dinámico
 
+## 🔧 Mantenimiento y Soporte
+
+### Monitoreo
+- Verificar diariamente que haya respuestas nuevas en la base de datos, usando el panel administrativo
+- Revisar logs de errores de PHP y MySQL
+- Monitorear el rendimiento de las consultas, al haber potencialmente muchos registros, optimizar índices si es necesario. 
+  De momento no es necesario, pero es recomendable tenerlo en cuenta para el futuro.
+
+### Backups
+- Backup automático de la base de datos (Lo realiza SARA diariamente y se guardan en google drive de medicina preventiva, la carpeta se llama respaldos)
+- Backup manual antes de actualizaciones (Realizarlo antes de cualquier cambio mayor)
+- Para restaurar la base de datos, usar phpMyAdmin o línea de comandos MySQL, importando el archivo SQL correspondiente. Se recomienda probar en un entorno de desarrollo antes de restaurar en producción.
+
+### Troubleshooting
+- Error común: Conexión a BD fallida → Verificar credenciales en conn.php sobretodo al cambiar de entorno de local a producción.
+- Error: Permisos insuficientes → Verificar permisos de escritura en servidor, el servidor web debe tener permisos para ejecutar archivos PHP y escribir en la base de datos. SARA ya tiene estos permisos configurados.
+- Error: DataTables no carga → Verificar rutas de librerías, asegurarse de que los archivos JS y CSS de DataTables estén correctamente referenciados en responses.html.
+- Error: Respuestas no se guardan → Verificar consola del navegador para errores JS, y logs de PHP para errores en send_response.php.
