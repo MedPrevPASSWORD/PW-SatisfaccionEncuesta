@@ -29,7 +29,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 // Validar campos obligatorios
-$requiredFields = ['area_atencion', 'experiencia', 'puntualidad', 'recomendacion']; // Estos datos se envían de main js en un  body: JSON.stringify(datos)
+$requiredFields = ['area_atencion', 'experiencia', 'puntualidad', 'recomendacion', 'entrenador']; // Estos datos se envían de main js en un  body: JSON.stringify(datos)
 foreach ($requiredFields as $field) {
 
     // 1. Verifica que exista
@@ -48,6 +48,7 @@ $validAreas = ['nutricion', 'medicina', 'fisica'];
 $validExperiencias = ['satisfecho', 'normal', 'insatisfecho'];
 $validPuntualidad = ['1', '0'];
 $validRecomendacion = ['1', '0'];
+$validEntrenador = ['1', '0'];
 
 if (!in_array($data['area_atencion'], $validAreas)) {
     sendResponse(false, "Área de atención inválida");
@@ -61,6 +62,9 @@ if (!in_array($data['puntualidad'], $validPuntualidad)) {
 if (!in_array($data['recomendacion'], $validRecomendacion)) {
     sendResponse(false, "Recomendación inválida");
 }
+if (!in_array($data['entrenador'], $validEntrenador)) {
+    sendResponse(false, "Respuesta de entrenador inválida");
+}
 
 // Sanitizar comentarios
 $comentarios = isset($data['comentarios']) ? substr(trim($data['comentarios']), 0, 500) : "";
@@ -68,8 +72,8 @@ $comentarios = isset($data['comentarios']) ? substr(trim($data['comentarios']), 
 // Preparar la consulta segura
 $stmt = $conn->prepare(
     "INSERT INTO pw_encuesta_de_satisfaccion 
-    (p1_area_atencion, p2_experiencia, p3_puntualidad, p4_recomendacion, comentarios)
-    VALUES (?, ?, ?, ?, ?)"
+    (p1_area_atencion, p2_experiencia, p3_puntualidad, p4_recomendacion, p5_entrenador, comentarios)
+    VALUES (?, ?, ?, ?, ?, ?)"
 );
 
 if (!$stmt) {
@@ -79,11 +83,12 @@ if (!$stmt) {
 
 // Vincular parámetros y ejecutar
 $stmt->bind_param(
-    "sssss",
+    "ssssss",
     $data['area_atencion'],
     $data['experiencia'],
     $data['puntualidad'],
     $data['recomendacion'],
+    $data['entrenador'],
     $comentarios
 );
 

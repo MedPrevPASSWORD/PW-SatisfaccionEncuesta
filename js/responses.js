@@ -77,17 +77,23 @@ document.addEventListener("DOMContentLoaded", () => {
           <th>Fecha contestado</th>
           <th>Área de atención</th>
           <th>Experiencia</th>
+          <th>Entrenador personalizado</th>
           <th>Comentarios</th>
         </tr>
       </thead>
       <tbody>`;
 
     data.forEach((row, i) => {
+      const entrenador = row.p5_entrenador === null || row.p5_entrenador === undefined || row.p5_entrenador === ""
+        ? ""
+        : (String(row.p5_entrenador) === "1" ? "Sí" : "No");
+
       html += `
     <tr>
       <td>${fechasFormateadas[i] || ""}</td>
       <td>${row.p1_area_atencion || ""}</td>
       <td>${row.p2_experiencia || ""}</td>
+      <td>${entrenador}</td>
       <td>${row.comentarios || ""}</td>
     </tr>`;
     });

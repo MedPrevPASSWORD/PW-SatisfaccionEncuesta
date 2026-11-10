@@ -11,10 +11,11 @@ form.addEventListener("submit", async (e) => {
   const experiencia = document.querySelector('input[name="p2-experiencia"]:checked');
   const puntualidad = document.querySelector('input[name="p3-puntualidad"]:checked');
   const recomendacion = document.querySelector('input[name="p4-recomendacion"]:checked');
+  const entrenador = document.querySelector('input[name="p5-entrenador"]:checked');
   const comentarios = document.getElementById("comentario").value.trim();
 
   // Validación
-  if (!area || !experiencia || !puntualidad || !recomendacion) {
+  if (!area || !experiencia || !puntualidad || !recomendacion || !entrenador) {
     alert("Por favor responde todas las preguntas obligatorias.");
     return;
   }
@@ -24,6 +25,7 @@ form.addEventListener("submit", async (e) => {
     experiencia: experiencia.value,
     puntualidad: puntualidad.value,
     recomendacion: recomendacion.value,
+    entrenador: entrenador.value,
     comentarios: comentarios
   };
 

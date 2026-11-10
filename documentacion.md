@@ -55,8 +55,13 @@ Las respuestas se registran en una base de datos centralizada y pueden ser consu
 - Campo: p4-recomendacion
 
 ### Pregunta 5
+**¿Te gustaría contar con un entrenador personalizado que te acompañe en el gimnasio y te oriente sobre la correcta ejecución de los ejercicios y tu rutina de entrenamiento, de manera gratuita?**
+- Opciones: Sí (1), No (0)
+- Campo: p5-entrenador
+
+### Pregunta 6
 **Comentario o sugerencia**
-- Campo: p5-comentarios
+- Campo: p6-comentarios
 
 
 ## Flujo General del Sistema
@@ -68,6 +73,7 @@ Las respuestas se registran en una base de datos centralizada y pueden ser consu
     - Experiencia general
     - Puntualidad
     - Recomendación
+    - Entrenador personalizado
     - Comentarios opcionales
 4. El frontend envía las respuestas mediante una petición fetch() a send_response.php
 5. Los datos se guardan en la base de datos
@@ -225,7 +231,7 @@ El sistema puede ser desplegado en cualquier servidor web que soporte PHP y MySQ
 
 ### Base de datos (MySQL)
 - Tabla pw_encuesta_de_satisfaccion
-- Campos: área, experiencia, puntualidad, recomendación, comentarios, fecha
+- Campos: área, experiencia, puntualidad, recomendación, entrenador personalizado, comentarios, fecha
 
 ## Base de Datos
 
@@ -238,6 +244,7 @@ El sistema puede ser desplegado en cualquier servidor web que soporte PHP y MySQ
 | p2_experiencia | VARCHAR(50) | experiencia |
 | p3_puntualidad | TINYINT | 1=Sí, 0=No |
 | p4_recomendacion | TINYINT | 1=Sí, 0=No |
+| p5_entrenador | TINYINT | 1=Sí, 0=No |
 | comentarios | TEXT | Opcional |
 | fecha | TIMESTAMP | Se genera automáticamente |
 
@@ -256,6 +263,7 @@ El sistema puede ser desplegado en cualquier servidor web que soporte PHP y MySQ
   "experiencia": "satisfecho",
   "puntualidad": 1,
   "recomendacion": 1,
+  "entrenador": 1,
   "comentarios": "Muy buena atención"
 }
 ```

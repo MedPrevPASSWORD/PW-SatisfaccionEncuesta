@@ -34,6 +34,7 @@ CREATE TABLE `pw_encuesta_de_satisfaccion` (
   `p2_experiencia` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `P3_puntualidad` tinyint(1) DEFAULT NULL,
   `p4_recomendacion` tinyint(1) DEFAULT NULL,
+  `p5_entrenador` tinyint(1) DEFAULT NULL,
   `comentarios` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
